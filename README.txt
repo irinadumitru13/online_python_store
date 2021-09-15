@@ -1,3 +1,7 @@
+Online fashion store - database PostgreSQL, backend Python with Flask, frontend HTML + CSS (multi page application)
+
+This project shows the usage of PL/SQL functions and procedures, encapsulating a big part of the backend inside the database.
+
 Build service
     docker-compose Build
 
