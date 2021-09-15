@@ -1,0 +1,27 @@
+{% extends "header.html" %}
+{% block content %}
+
+    <div class="main">
+        <div class="content">
+            <form action="/login" method="post">
+                <div class="container">
+                    <h1>Conectare</h1>
+                    <p>Va rugam completati cu credentialele dumneavoastra.</p>
+                    <font color=red>{{ message }}</font>
+                    <hr>
+                    <label for="email"><b>E-mail</b></label>
+                    <input type="email" placeholder="Introduceti e-mail-ul" name="email" required>
+
+                    <label for="password"><b>Parola</b></label>
+                    <input type="password" placeholder="Introduceti parola" name="password" pattern=".{7,}" required>
+                    <button type="submit" class="register_button">Conectare</button>
+                </div>
+                <div class="container signin">
+                    <p>Nu ai un cont? <a href="/register">Inregistreaza-te aici.</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    </body>
+{% endblock %}

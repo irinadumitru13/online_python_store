@@ -1,0 +1,92 @@
+{% extends "header.html" %}
+{% block content %}
+
+    <div class="main">
+        <!--Section: Block Content-->
+        <section class="mb-5">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src={{ image }} height="100%" width="100%">
+                </div>
+                <div class="col-md-6 details">
+                    <h5><b>{{ name }}</b></h5>
+                    <p class="mb-2 text-muted text-uppercase"><b>{{ brand }}</b></p>
+                    <p><span class="mr-1"><strong>{{ price }} RON</strong></span></p>
+                    <p class="pt-1" style="white-space: pre-line">{{ description }}</p>
+                    <hr>
+                    <form method="POST" action="/cart">
+                        <div class="table-responsive mb-2">
+                            <table class="table table-sm table-borderless">
+                                <tbody>
+                                <tr>
+                                    <td class="pl-0 pb-0 w-25">Cantitate</td>
+                                    <td class="pb-0">Selecteaza marime</td>
+                                </tr>
+                                <tr>
+                                    <td class="pl-0">
+                                        <div class="def-number-input number-input safari_only mb-0">
+                                            <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="mt-1">
+                                            <div class="form-check form-check-inline pl-0">
+                                                <input type="radio" class="form-check-input" id="XS"
+                                                       name="materialExampleRadios" value="XS" data-size="{{ xs }}"
+                                                       checked>
+                                                <label class="form-check-label small text-uppercase card-link-secondary"
+                                                       for="XS">XS</label>
+                                            </div>
+                                            <div class="form-check form-check-inline pl-0">
+                                                <input type="radio" class="form-check-input" id="S"
+                                                       name="materialExampleRadios" value="S" data-size="{{ s }}">
+                                                <label class="form-check-label small text-uppercase card-link-secondary"
+                                                       for="S">S</label>
+                                            </div>
+                                            <div class="form-check form-check-inline pl-0">
+                                                <input type="radio" class="form-check-input" id="M"
+                                                       name="materialExampleRadios" value="M" data-size="{{ m }}">
+                                                <label class="form-check-label small text-uppercase card-link-secondary"
+                                                       for="M">M</label>
+                                            </div>
+                                            <div class="form-check form-check-inline pl-0">
+                                                <input type="radio" class="form-check-input" id="L"
+                                                       name="materialExampleRadios" value="L" data-size="{{ l }}">
+                                                <label class="form-check-label small text-uppercase card-link-secondary"
+                                                       for="L">L</label>
+                                            </div>
+                                            <div class="form-check form-check-inline pl-0">
+                                                <input type="radio" class="form-check-input" id="XL"
+                                                       name="materialExampleRadios" value="XL" data-size="{{ xl }}">
+                                                <label class="form-check-label small text-uppercase card-link-secondary"
+                                                       for="XL">XL</label>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <input type="hidden" name="id" value={{ id }}>
+                        <button type="submit cart-btn">
+                            Adauga in cos
+                        </button>
+                    </form>
+
+
+                </div>
+            </div>
+        </section>
+        <!--Section: Block Content-->
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.form-check-input').on('click', function () {
+                console.log($(this).data('size'));
+                $('.quantity').attr({"max": $(this).data('size')});
+            })
+        });
+    </script>
+    </body>
+{% endblock %}

@@ -1,0 +1,45 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/1-schema.sql
+      - ./db/data.sql:/docker-entrypoint-initdb.d/2-data.sql
+      - ./db/functions.sql:/docker-entrypoint-initdb.d/3-functions.sql
+      - db_data:/var/lib/postgresql/data
+    restart: always
+    environment:
+      POSTGRES_USER: proiectBD
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: FASHIONSTORE
+    networks:
+      - frontend
+      - backend
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    networks:
+      - backend
+  service:
+    build: ./FashionStore
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres
+    volumes:
+      - ./FashionStore:/FashionStore
+    restart: always
+    networks:
+      - frontend
+volumes:
+  db_data: {}
+networks:
+   frontend:
+   backend:

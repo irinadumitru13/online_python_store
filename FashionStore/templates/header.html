@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css">
+    <!-- Roboto Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700&amp;display=swap">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Material Design Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css">
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+</head>
+<body>
+<div class="topnav">
+    <a href="/"><i class="fa fa-fw fa-home"></i> Home</a>
+    <div class="header">
+        <img src="/static/logo.png" width="200" height="100" style="vertical-align: center">
+    </div>
+    <div class="login-container">
+        <a href="/cart"><i class="fa fa-fw fa-shopping-basket"></i></a>
+        {% if user_name %}
+            <a href="/logout"> Iesire din cont</a>
+            <a href=""><i class="fa fa-fw fa-user"></i>{{ user_name }}</a>
+        {% else %}
+            <a href="/register"><i class="fa fa-fw fa-address-card"></i>Creeaza cont</a>
+            <a href="/login"><i class="fa fa-fw fa-user"></i> Conectare</a>
+        {% endif %}
+    </div>
+</div>
+<div class="row">
+    <div class="side">
+        <div class="sidebar">
+            {% for id, name in categories %}
+                <a class="active" href="/products/{{ id }}">{{ name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% block content %}{% endblock %}

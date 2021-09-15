@@ -1,0 +1,33 @@
+{% extends "header.html" %}
+{% block content %}
+
+    <div class="main products">
+        <strong><p style="text-align:left">Numar de articole: {{ nr_prod }}</p></strong>
+        <div class="content" style="display: flex;flex-wrap: wrap;">
+            {% for id, name, brand, image, price, stock in products %}
+                <div class="card">
+
+                    <img src={{ image }} class="card-image" style="width:100%">
+                    <a href="/product/{{ id }}">
+                        <h1>{{ name }}</h1>
+                    </a>
+                    <p>{{ brand }}</p>
+                    <p class="price">{{ price }} RON</p>
+                    {% if stock > 0 %}
+                        <a class="product-link" href="/product/{{ id }}">
+                            <button type="button">Vezi produsul</button>
+                        </a>
+                    {% else %}
+                        <p>
+                            <button type="button">Currently unavailable</button>
+                        </p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    </body>
+
+{% endblock %}

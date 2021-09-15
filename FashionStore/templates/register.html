@@ -1,0 +1,44 @@
+{% extends "header.html" %}
+{% block content %}
+
+    <div class="main">
+        <div class="content">
+            <form action="/register" method="post">
+                <div class="container">
+                    <h1>Inregistrare</h1>
+                    <p>Va rugam completati urmatorul formular pentru a va putea crea un cont.</p>
+                    <font color=red>{{ message }}</font>
+                    <hr>
+                    <label for="firstName"><b>Prenume</b></label>
+                    <input type="text" onkeyup="this.value = this.value.replace(/[^a-zA-Z]/, '')"
+                           placeholder="Introduceti prenumele" name="firstName" value="{{ firstName }}" required>
+                    <label for="lastName"><b>Nume de familie</b></label>
+                    <input type="text" onkeyup="this.value = this.value.replace(/[^a-zA-Z]/, '')"
+                           placeholder="Introduceti numele de familie" name="lastName" value="{{ lastName }}" required>
+                    <label for="email"><b>E-mail</b></label>
+                    <input type="email" placeholder="Introduceti e-mail-ul" name="email" id="e-mail" value="{{ email }}"
+                           required>
+                    <label for="address"><b>Adresa</b></label>
+                    <textarea placeholder="Introduceti adresa" name="address" rows=3 required>{{ address }}</textarea>
+                    <label for="phone"><b>Numar de telefon (format: 0123456789)</b></label>
+                    <input type="tel" placeholder="Introduceti numarul de telefon" pattern="0[0-9]{3}[0-9]{3}[0-9]{3}"
+                           name="phone" value="{{ phone }}" required>
+                    <label for="password"><b>Parola (Minimum 7 caractere)</b></label>
+                    <input type="password" placeholder="Introduceti parola" name="password" pattern=".{7,}"
+                           value="{{ password }}" required>
+                    <label for="pass_repeat"><b>Confirmare parola</b></label>
+                    <input type="password" placeholder="Reintroduceti parola" name="pass_repeat"
+                           value="{{ pass_repeat }}" required>
+                    <hr>
+                    <button type="submit" class="register_button">Creeaza cont</button>
+                </div>
+                <div class="container signin">
+                    <p>Ai deja un cont? <a href="/login">Conecteaza-te</a>.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    </body>
+
+{% endblock %}

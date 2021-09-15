@@ -1,0 +1,4 @@
+psycopg2~=2.8.6
+flask~=1.1.2
+argon2-cffi
+pip~=20.3.1

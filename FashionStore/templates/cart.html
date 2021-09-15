@@ -1,0 +1,98 @@
+{% extends "header.html" %}
+{% block content %}
+
+    <div class="main cart">
+        <!--Section: Block Content-->
+        <section>
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-8">
+                    <!-- Card -->
+                    <div class="mb-3">
+                        <div class="pt-4 wish-list">
+                            <h5 class="mb-4">Cos de cumparaturi (<span>{{ nr_elements }}</span> produse)</h5>
+                            {% for id, name, brand, image, price, size, pieces in products %}
+                                <div class="row mb-4">
+                                    <div class="col-md-5 col-lg-3 col-xl-3">
+                                        <div class="view rounded mb-3 mb-md-0">
+                                            <img class="img-fluid w-100"
+                                                 src="{{ image }}" alt="Sample">
+                                            <div class="mask">
+                                                <img class="img-fluid w-100" src="{{ image }}">
+                                                <div class="mask rgba-black-slight"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-lg-9 col-xl-9">
+                                        <div>
+                                            <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <h5>{{ name }}</h5>
+                                                    <p class="mb-3 text-muted small">{{ brand }}</p>
+                                                    <p class="mb-3 text-muted small">Marime: {{ size }}</p>
+                                                    <p class="mb-3 text-muted small">Cantitate: {{ pieces }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div>
+                                                    <form method="POST" action="/cart?id={{ id }}">
+                                                        <input type="hidden" name="size" value="{{ size }}">
+                                                        <button type="submit"
+                                                                class="card-link-secondary text-uppercase mr-3"><i
+                                                                class="fas fa-trash-alt mr-1"></i> Elimina produsul
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <p class="mb-0"><span><strong
+                                                        id="summary">{{ price }} RON</strong></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            <hr class="mb-4">
+                        </div>
+                    </div>
+                    <!-- Card -->
+                </div>
+                <!--Grid column-->
+                <div class="col-lg-4">
+                    <!-- Card -->
+                    <div class="mb-3">
+                        <div class="pt-4">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                    Subtotal
+                                    <span>{{ subtotal }}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                                    <div>
+                                        <strong>Total</strong>
+                                        <strong>
+                                            <p class="mb-0">(plus TVA 9%)</p>
+                                        </strong>
+                                    </div>
+                                    <span><strong>{{ total }}</strong></span>
+                                </li>
+                            </ul>
+                            {% if userid %}
+                                <form method="POST" action="/endCart">
+                                    <input type="hidden" name="total" value="{{ total }}">
+                                    <button type="submit" class="btn checkout btn-block">Finalizeaza comanda</button>
+                                </form>
+                            {% else %}
+                                <p>Trebuie sa va logati pentru a finaliza comanda</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- Card -->
+                </div>
+                <!--Grid column-->
+            </div>
+            <!-- Grid row -->
+        </section>
+        <!--Section: Block Content-->
+    </div>
+    </body>
+{% endblock %}
